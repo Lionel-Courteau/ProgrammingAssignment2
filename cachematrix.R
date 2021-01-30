@@ -1,8 +1,8 @@
+## Lionel Courteau
 ## Coursera R Programming Week 3: Programming Assignment 2: Lexical Scoping
 
 ## The purpose of this project is to write a pair of functions that cache the inverse
 ## of a matrix.
-
 
 
 ## This function creates a special "matrix" object that can cache its inverse
@@ -14,11 +14,11 @@ makeCacheMatrix <- function(x = matrix()) {
     j <<- NULL
   }
   get <- function() x
-  setInverse <- function(inverse) j <<- inverse
-  getInverse <- function() j
+  set_Inverse <- function(inverse) j <<- inverse
+  get_Inverse <- function() j
   list(set = set, get = get,
-       setInverse = setInverse,
-       getInverse = getInverse)
+       set_Inverse = set_Inverse,
+       get_Inverse = get_Inverse)
 }
 
 
@@ -27,13 +27,13 @@ makeCacheMatrix <- function(x = matrix()) {
 ## has not changed), then cacheSolve should retrieve the inverse from the cache.
 
 cacheSolve <- function(x, ...) {
-  j <- x$getInverse()
+  j <- x$get_Inverse()
   if(!is.null(j)) {
     message("getting inversed matrix")
     return(j)
   }
   data <- x$get()
   j <- solve(data, ...)
-  x$setInverse(j)
+  x$set_Inverse(j)
   j
 }
